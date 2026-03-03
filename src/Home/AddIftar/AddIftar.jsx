@@ -13,7 +13,7 @@ const AddIftar = () => {
       .then((res) => res.json())
       .then((data) => setDistricts(data));
   }, []);
-  console.log(districts);
+
 
   // Update upazilas when district changes
   useEffect(() => {
@@ -34,6 +34,15 @@ const AddIftar = () => {
     const form = e.target;
     const formData = new FormData(form);
     const data = Object.fromEntries(formData);
+
+    // added data in mongodb
+    fetch(`${import.meta.env.VITE_API_URL}/iftarData`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
     toast.success("🦄 Wow so easy!", {
       position: "top-right",
       autoClose: 2000,
@@ -45,7 +54,6 @@ const AddIftar = () => {
       theme: "light",
       transition: Bounce,
     });
-    console.log("Form Data:", data);
   };
 
   return (
