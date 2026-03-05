@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import { Bounce, toast } from "react-toastify";
 
 const AddIftar = () => {
@@ -6,6 +7,7 @@ const AddIftar = () => {
   const [upazilas, setUpazilas] = useState([]);
   const [selectedDistrict, setSelectedDistrict] = useState("");
   const [selectedUpazila, setSelectedUpazila] = useState("");
+  const navigation = useNavigate();
 
   // Fetch districts from backend
   useEffect(() => {
@@ -13,7 +15,6 @@ const AddIftar = () => {
       .then((res) => res.json())
       .then((data) => setDistricts(data));
   }, []);
-
 
   // Update upazilas when district changes
   useEffect(() => {
@@ -54,6 +55,7 @@ const AddIftar = () => {
       theme: "light",
       transition: Bounce,
     });
+    navigation("/")
   };
 
   return (

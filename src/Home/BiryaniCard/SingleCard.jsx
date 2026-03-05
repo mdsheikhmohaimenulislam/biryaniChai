@@ -1,13 +1,18 @@
 import React from "react";
 
 const SingleCard = ({ ifterData }) => {
-  const { description, upazila, mosque, iftar, district } = ifterData || {};
- 
+  const { description, upazila, mosque, iftar, district, createdAt } =
+    ifterData || {};
+
+  const data = new Date(ifterData?.createdAt);
+  const formatTime = data.toLocaleTimeString();
+
   return (
     <div>
       <div className="card card-dash bg-gray-300 ">
         <div className="card-body">
           <div>
+            <p>Activity: {formatTime}</p>
             <h2 className="text-xl">
               <span className="text-gray-500">District:</span>{" "}
               <span className="font-bold">{district}</span>
